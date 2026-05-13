@@ -1,9 +1,27 @@
 import cosas.*
-
-describe "group of test for cosas" {
-
-  test "first test" {
-    assert.that(true)
+describe "Test de objetos que se pueden agregar al camión" {
+  test "Si el paquete de ladrillos tiene 40 unidades, su peso sería de 80 kg." {
+    paqueteDeLadrillos.cantidadLadrillos(40)
+    assert.equals(80, paqueteDeLadrillos.peso())
   }
-
+  test "Si la bateria antiaérea tiene tiene misiles su nivel de peligrosidad es de 100" {
+    bateriaAntiaerea.colocarMisiles()
+    assert.equals(100, bateriaAntiaerea.peligrosidad())
+  }
+  test "Si al contenedor portuario se le agrega un bumblebee convertido en robot, su peso sería de 900 kg" {
+    bumblebee.convertirEnRobot()
+    contenedorPortuario.agregarObjetos(bumblebee)
+    assert.equals(900, contenedorPortuario.peso())  
+  }
+  test "Si al contenedor portuario se le agrega un bumblebee convertido en robot y un knightRider, su nivel de peligrosidad sería de 30" {
+    bumblebee.convertirEnRobot()
+    contenedorPortuario.agregarObjetos(bumblebee)
+    contenedorPortuario.agregarObjetos(knightRider)
+    assert.equals(30, contenedorPortuario.peligrosidad())  
+  }
+  test "Si se envueve los residuos radioactivos con 30kg de peso con un embalaje de seugirdad, su nivel de peligrosidad sería de 100"{
+    residuosRadioactivos.peso(30)
+    embalajeDeSeguridad.embalarObjeto(residuosRadioactivos)
+    assert.equals(100, embalajeDeSeguridad.peligrosidad())
+  }
 }

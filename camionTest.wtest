@@ -1,9 +1,71 @@
+import cosas.*
 import camion.*
+// CASO GENERAL: bumblebee como robot, la arena a granel con 150 kilos, la batería antiaérea con los misiles puestos, y el embalaje de seguridad poniéndole como contenido el paquete de ladrillos con 80 ladrillos
+describe "Test del camión" {
 
-describe "group of test for camion" {
-
-  test "first test" {
-    assert.that(true)
+  test "Si se le agrega todo lo anterior, el peso total del camión sería de 1410 kg" {
+    bumblebee.convertirEnRobot()
+    camion.cargarCosa(bumblebee)
+    arenaAGranel.peso(150)
+    camion.cargarCosa(arenaAGranel)
+    bateriaAntiaerea.colocarMisiles()
+    camion.cargarCosa(bateriaAntiaerea)
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.embalarObjeto(paqueteDeLadrillos)
+    camion.cargarCosa(embalajeDeSeguridad)
+    
+    assert.equals(1410, camion.pesoTotal())
   }
-
+  test "Si se le agrega todo lo anterior, el peso de cada cosa es par" {
+    bumblebee.convertirEnRobot()
+    camion.cargarCosa(bumblebee)
+    arenaAGranel.peso(150)
+    camion.cargarCosa(arenaAGranel)
+    bateriaAntiaerea.colocarMisiles()
+    camion.cargarCosa(bateriaAntiaerea)
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.embalarObjeto(paqueteDeLadrillos)
+    camion.cargarCosa(embalajeDeSeguridad)
+    
+    assert.that(camion.pesoDeCadaCosaCargadaEsPar())
+  }
+  test "Si se le agrega todo lo anterior, la primer cosa con peligrosidad es bumbleebee" {
+    bumblebee.convertirEnRobot()
+    camion.cargarCosa(bumblebee)
+    arenaAGranel.peso(150)
+    camion.cargarCosa(arenaAGranel)
+    bateriaAntiaerea.colocarMisiles()
+    camion.cargarCosa(bateriaAntiaerea)
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.embalarObjeto(paqueteDeLadrillos)
+    camion.cargarCosa(embalajeDeSeguridad)
+    
+    assert.equals(bumblebee, camion.primerCosaConPeligrosidad())
+  }
+  test "Si se le agrega todo lo anterior, no está excedido de peso" {
+    bumblebee.convertirEnRobot()
+    camion.cargarCosa(bumblebee)
+    arenaAGranel.peso(150)
+    camion.cargarCosa(arenaAGranel)
+    bateriaAntiaerea.colocarMisiles()
+    camion.cargarCosa(bateriaAntiaerea)
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.embalarObjeto(paqueteDeLadrillos)
+    camion.cargarCosa(embalajeDeSeguridad)
+    
+    assert.notThat(camion.estaExcedidoDePeso())
+  }
+  test "Si se le agrega todo lo anterior, tiene una cosa con un peso entre 50 y 150 (Arena a granel)" {
+    bumblebee.convertirEnRobot()
+    camion.cargarCosa(bumblebee)
+    arenaAGranel.peso(150)
+    camion.cargarCosa(arenaAGranel)
+    bateriaAntiaerea.colocarMisiles()
+    camion.cargarCosa(bateriaAntiaerea)
+    paqueteDeLadrillos.cantidadLadrillos(80)
+    embalajeDeSeguridad.embalarObjeto(paqueteDeLadrillos)
+    camion.cargarCosa(embalajeDeSeguridad)
+    
+    assert.that(camion.tieneUnaCosaEntre(50, 150))
+  }
 }
