@@ -3,7 +3,7 @@ object camion {
     const carga = []
 
     method peso(){
-        return 1000
+        return 100000
     }
     method pesoTotal(){
         return carga.sum({c => c.peso()})
